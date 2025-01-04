@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logs Dashboard</title>
+</head>
+<body>
+  <h1>Logs Dashboard</h1>
+  <p>Welcome, <%= user.username %>!</p>
+  <a href="/auth/logout">Logout</a>
+  <table border="1">
+    <thead>
+      <tr>
+          <th>Level</th>
+          <th>Service</th>
+          <th>Message</th>
+          <th>Timestamp</th>
+          <th>Meta</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% logs.forEach(log => { %>
+        <tr>
+            <td><%= log.level %></td>
+            <td><%= log.service %></td>
+            <td><%= log.message %></td>
+            <td><%= new Date(log.timestamp).toLocaleString() %></td>
+            <td><%= JSON.stringify(log.meta, null, 2) %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>
